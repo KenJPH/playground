@@ -19,7 +19,7 @@ void loop() {
   currentTime = micros();
 
   if (currentIn != lastIn) {
-    insertRecord(lastIn, currentTime - lastTime);
+    insertRecord();
 
     lastIn = currentIn;
     lastTime = currentTime;
@@ -30,10 +30,10 @@ void loop() {
   }
 }
 
-void insertRecord(int in, unsigned long duration) {
+void insertRecord() {
   record r;
   r.in = lastIn;
-  r.duration = duration;
+  r.duration = currentTime - lastTime;
   records[recordIndex++] = r;
 }
 
